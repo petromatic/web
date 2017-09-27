@@ -12,9 +12,13 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { UserService } from './user.service';
 import { LoginGuard } from './login.guard';
+import { AdminGuard } from './admin.guard';
+import { UsersComponent } from './users/users.component';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -25,14 +29,15 @@ const appRoutes: Routes = [
     LoginComponent,
     NavComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [AngularFireAuth,UserService,LoginGuard],
+  providers: [AngularFireAuth, AngularFireDatabase, UserService, LoginGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

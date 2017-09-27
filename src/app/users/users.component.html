@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users | async">
+      <td>
+        <span>
+          <img width="40" class="img-circle" alt="User Avatar" src="/assets/img/man.png">
+        </span>
+      </td>
+      <td>{{user.name}}</td>
+      <td>{{user.surname}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <button class="btn btn-info parents pull-right" alt="Editar" title="Editar">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
