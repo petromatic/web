@@ -1,0 +1,39 @@
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend>Editar</legend>
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="nameInput">Nombre</label>
+        <div class="col-md-4">
+          <input [ngModel]="user?.name" (ngModelChange)="user.name = $event" id="nameInput" name="nameInput" type="text" placeholder="Nombre" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-md-4 control-label" for="surnameInput">Apellido</label>
+          <div class="col-md-4">
+            <input [ngModel]="user?.surname" (ngModelChange)="user.surname = $event" id="surnameInput" name="surnameInput" type="text" placeholder="Apellido" class="form-control input-md">
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="emailInput">email</label>
+            <div class="col-md-4">
+              <input [ngModel]="user?.email" (ngModelChange)="user.email = $event" id="emailInput" name="emailInput" type="text" placeholder="email" class="form-control input-md">
+            </div>
+          </div>    
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="singlebutton"></label>
+        <div class="col-md-4">
+          <button id="singlebutton" name="singlebutton" class="btn btn-primary">
+            <span class="gliphicon-save"></span>
+            Guardar
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>

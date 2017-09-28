@@ -1,23 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { RouterModule, Routes } from '@angular/router';
-import { NavComponent } from './nav/nav.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
+import { FormsModule } from '@angular/forms';
+
 import { environment } from '../environments/environment';
 import { UserService } from './user.service';
 import { LoginGuard } from './login.guard';
 import { AdminGuard } from './admin.guard';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { UsereditComponent } from './useredit/useredit.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+  { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
@@ -30,9 +34,11 @@ const appRoutes: Routes = [
     NavComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    UsereditComponent
   ],
   imports: [
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase)

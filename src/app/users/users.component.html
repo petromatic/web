@@ -7,9 +7,8 @@
       <th>email</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr *ngFor="let user of users | async">
+    <tr *ngFor="let user of users | async; index as i">
       <td>
         <span>
           <img width="40" class="img-circle" alt="User Avatar" src="/assets/img/man.png">
@@ -19,7 +18,7 @@
       <td>{{user.surname}}</td>
       <td>{{user.email}}</td>
       <td>
-        <button class="btn btn-info parents pull-right" alt="Editar" title="Editar">
+        <button [routerLink]="['/useredit', user.$key]" class="btn btn-info parents pull-right" alt="Editar" title="Editar">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
         </button>
       </td>
