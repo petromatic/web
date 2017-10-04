@@ -1,34 +1,35 @@
 <div class="container">
   <form class="form-horizontal">
     <fieldset>
-      <legend>Editar</legend>
+      <legend *ngIf="id">Editar usuario</legend>
+      <legend *ngIf="!id">Nuevo usuario</legend>
       <div class="form-group">
         <label class="col-md-4 control-label" for="nameInput">Nombre</label>
         <div class="col-md-4">
-          <input [ngModel]="user?.name" (ngModelChange)="user.name = $event" id="nameInput" name="nameInput" type="text" placeholder="Nombre" class="form-control input-md">
+          <input [ngModel]="user?.name" (ngModelChange)="user.name = $event; changed = true;" id="nameInput" name="nameInput" type="text" placeholder="Nombre" class="form-control input-md">
         </div>
       </div>
 
       <div class="form-group">
           <label class="col-md-4 control-label" for="surnameInput">Apellido</label>
           <div class="col-md-4">
-            <input [ngModel]="user?.surname" (ngModelChange)="user.surname = $event" id="surnameInput" name="surnameInput" type="text" placeholder="Apellido" class="form-control input-md">
+            <input [ngModel]="user?.surname" (ngModelChange)="user.surname = $event; changed = true;" id="surnameInput" name="surnameInput" type="text" placeholder="Apellido" class="form-control input-md">
           </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="emailInput">email</label>
             <div class="col-md-4">
-              <input [ngModel]="user?.email" (ngModelChange)="user.email = $event" id="emailInput" name="emailInput" type="text" placeholder="email" class="form-control input-md">
+              <input [ngModel]="user?.email" (ngModelChange)="user.email = $event; changed = true;" id="emailInput" name="emailInput" type="text" placeholder="email" class="form-control input-md">
             </div>
           </div>    
 
       <div class="form-group">
         <label class="col-md-4 control-label" for="singlebutton"></label>
         <div class="col-md-4">
-          <button id="singlebutton" name="singlebutton" class="btn btn-primary">
+          <button [disabled]="!changed" (click)="save()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': changed, 'btn-success': !changed }">
             <span class="gliphicon-save"></span>
-            Guardar
+            {{ changed ? "Guardar" : "Guardado" }}
           </button>
         </div>
       </div>
