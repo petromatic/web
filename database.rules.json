@@ -1,6 +1,19 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "admin": {
+      "$uid": {
+        ".read": "$uid === auth.uid"
+      }
+    },
+    "users": {
+      ".read": "root.child('admin').child(auth.uid).exists()",
+      ".write": "root.child('admin').child(auth.uid).exists()",
+      "$uid": {
+        "name": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }
+      }
+    }
   }
 }
