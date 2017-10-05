@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { UUID } from 'angular2-uuid';
+
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../../environments/environment';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-useredit',
@@ -36,15 +42,18 @@ export class UsereditComponent implements OnInit {
 
   save()
   {
-    console.log("save");
     if(!this.id)
     {
-      console.log("New");
-      this.db.list('/users').push(this.user).then( (user) => {
-        console.log(user);
-        this.id = user.key;
+      const afAuth = new AngularFireAuth(firebase.initializeApp(environment.firebase2,"tmpauth"));
+      
+      let email = this.user.email;
+      let password = UUID.UUID();
+      afAuth.auth.createUserWithEmailAndPassword(email, password).then( (afUser) =>{
+        this.id = afUser.uid;
         this.userModel = this.db.object('/users/'+this.id, { preserveSnapshot: true });
-        this.changed = false;
+        this.userModel.update(this.user).then( (user) =>{
+          this.changed = false;
+        });
       });
     }
     else

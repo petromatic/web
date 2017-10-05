@@ -14,6 +14,14 @@
           ".write": "$uid === auth.uid"
         }
       }
+    },
+    "user_transactions": {
+      ".read": "root.child('admin').child(auth.uid).exists()",
+      ".write": "root.child('admin').child(auth.uid).exists()",
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".indexOn": ["timestamp"]
+      }
     }
   }
 }
