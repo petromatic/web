@@ -18,9 +18,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { UsereditComponent } from './useredit/useredit.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+  { path: 'transactions?user=:id', component: TransactionsComponent, canActivate: [LoginGuard] },
   { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     DashboardComponent,
     UsersComponent,
-    UsereditComponent
+    UsereditComponent,
+    TransactionsComponent
   ],
   imports: [
     FormsModule,
