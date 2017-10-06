@@ -1,3 +1,18 @@
-<p>
-  transactions works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Descripción</th>
+      <th>Monto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions | async">
+      <td>{{transaction.timestamp}}</td>
+      <td>{{transaction.timestamp}}</td>
+      <td>{{transaction.description}}</td>
+      <td>{{transaction.amount}}</td>
+    </tr>
+  </tbody>
+</table>
