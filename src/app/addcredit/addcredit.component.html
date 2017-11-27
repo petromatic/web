@@ -1,0 +1,38 @@
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend *ngIf="id">Editar usuario</legend>
+      <legend *ngIf="!id">Nuevo usuario</legend>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="userInput">Usuario</label>
+        <div class="col-md-4">
+          <select [ngModel]="userId" (ngModelChange)="userId = $event; changed = true;" id="userInput" name="userInput" class="form-control input-md">
+            <option *ngFor="let user of (users | async)" [ngValue]="user.$key">
+                {{user.name}} {{user.surname}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="amountInput">Monto</label>
+        <div class="col-md-4">
+          <input [ngModel]="amount" (ngModelChange)="amount = $event; changed = true;" id="amountInput" name="nameInput" type="number" placeholder="0" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="singlebutton"></label>
+        <div class="col-md-4">
+          <button [disabled]="!changed" (click)="save()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': changed, 'btn-success': !changed }">
+            <span class="gliphicon-save"></span>
+            {{ changed ? "Enviar" : "Enviado" }}
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>

@@ -19,12 +19,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { AddCreditComponent } from './addcredit/addcredit.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
   { path: 'transactions?user=:id', component: TransactionsComponent, canActivate: [LoginGuard] },
   { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
+  { path: 'useredit', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
+  { path: 'addcredit/:uid', component: AddCreditComponent, canActivate: [AdminGuard] },
+  { path: 'addcredit', component: AddCreditComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -38,7 +42,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     UsersComponent,
     UsereditComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    AddCreditComponent
   ],
   imports: [
     FormsModule,
