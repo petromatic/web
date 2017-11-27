@@ -1,25 +1,34 @@
 {
   "rules": {
+  ".read": "root.child('admin').child(auth.uid).exists()",
+  ".write": "root.child('admin').child(auth.uid).exists()",
     "admin": {
       "$uid": {
         ".read": "$uid === auth.uid"
       }
     },
-    "users": {
-      ".read": "root.child('admin').child(auth.uid).exists()",
-      ".write": "root.child('admin').child(auth.uid).exists()",
-      "$uid": {
-        "name": {
-          ".read": "$uid === auth.uid",
-          ".write": "$uid === auth.uid"
+    "rfid":{
+    	"$rfidlr":{
+        "value":{
+          ".read": "auth.rfidlr === $rfidlr"
+        },
+        "$rfidem":{
+          ".read": "auth.rfidlr === $rfidlr && auth.rfidem === $rfidem"
         }
       }
     },
-    "user_transactions": {
-      ".read": "root.child('admin').child(auth.uid).exists()",
-      ".write": "root.child('admin').child(auth.uid).exists()",
+    "users": {
       "$uid": {
-        ".read": "$uid === auth.uid",
+          ".read": "$uid === auth.uid || root.child('rfid').child(auth.rfidlr).child(auth.rfidem).val() === $uid"
+      }
+    },
+    "user_transactions": {
+      "$uid": {
+        ".read": "$uid === auth.uid || root.child('rfid').child(auth.rfidlr).child(auth.rfidem).val() === $uid",
+        "$transactionId":{
+          ".write": "root.child('rfid').child(auth.rfidlr).child(auth.rfidem).val() === $uid && !data.exists()",
+          ".validate": "newData.child('value').val() < 0 || root.child('admin').child(auth.uid).exists()"
+        },
         ".indexOn": ["timestamp"]
       }
     }
