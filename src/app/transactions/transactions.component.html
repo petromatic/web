@@ -4,7 +4,7 @@
       <th>Origen</th>
       <th>Fecha y hora</th>
       <th>Monto</th>
-      <th>Validado</th>
+      <th class="hidden-xs">Validado</th>
     </tr>
   </thead>
   <tbody>
@@ -12,9 +12,7 @@
       <td><!--{{transaction}}--></td>
       <td>{{transaction.localtime | date:'short'}}</td>
       <td>{{transaction.value}}</td>
-      <td>{{transaction.timestamp | date:'short'}}</td>
-      <td>
-      </td>
+      <td class="hidden-xs">{{transaction.timestamp | date:'short'}}</td>
     </tr>
   </tbody>
 </table>

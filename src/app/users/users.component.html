@@ -2,12 +2,13 @@
   <thead>
     <tr>
       <th></th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>email</th>
+      <th class="hidden-sm-up">Usuario</th>
+      <th class="hidden-xs">Nombre</th>
+      <th class="hidden-xs">Apellido</th>
+      <th class="hidden-xs">email</th>
       <th>
         <button [routerLink]="['/useredit', '']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
         </button>
       </th>
     </tr>
@@ -19,9 +20,10 @@
           <img width="40" class="img-circle" alt="User Avatar" src="/assets/img/man.png">
         </span>
       </td>
-      <td>{{user.name}}</td>
-      <td>{{user.surname}}</td>
-      <td>{{user.email}}</td>
+      <td class="hidden-sm-up">{{user.surname}}, {{user.name}}</td>
+      <td class="hidden-xs">{{user.name}}</td>
+      <td class="hidden-xs">{{user.surname}}</td>
+      <td class="hidden-xs">{{user.email}}</td>
       <td>
         <div class="btn-toolbar pull-right">
           <button [routerLink]="['/transactions', user.$key]" class="btn btn-info parents" alt="Editar" title="Editar">
