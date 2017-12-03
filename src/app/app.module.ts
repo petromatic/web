@@ -24,7 +24,8 @@ import { BusyComponent } from './busy/busy.component';
 import { BusyService } from './busy.service';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+  //{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
+  { path: '', component: UsersComponent, canActivate: [AdminGuard] },
   { path: 'transactions/:uid', component: TransactionsComponent, canActivate: [LoginGuard] },
   { path: 'transactions', component: TransactionsComponent, canActivate: [LoginGuard] },
   { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
