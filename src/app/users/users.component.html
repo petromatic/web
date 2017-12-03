@@ -23,9 +23,15 @@
       <td>{{user.surname}}</td>
       <td>{{user.email}}</td>
       <td>
-        <button [routerLink]="['/useredit', user.$key]" class="btn btn-info parents pull-right" alt="Editar" title="Editar">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar
-        </button>
+        <div class="btn-toolbar pull-right">
+          <button [routerLink]="['/transactions', user.$key]" class="btn btn-info parents" alt="Editar" title="Editar">
+            <span class="fa fa-exchange" aria-hidden="true"></span> <span class="hidden-xs">Transacciones</span>
+          </button>
+          
+          <button [routerLink]="['/useredit', user.$key]" class="btn btn-info parents" alt="Editar" title="Editar">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="hidden-xs">Editar</span>
+          </button>
+        </div>
       </td>
     </tr>
   </tbody>

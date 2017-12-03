@@ -23,7 +23,8 @@ import { AddCreditComponent } from './addcredit/addcredit.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
-  { path: 'transactions?user=:id', component: TransactionsComponent, canActivate: [LoginGuard] },
+  { path: 'transactions/:uid', component: TransactionsComponent, canActivate: [LoginGuard] },
+  { path: 'transactions', component: TransactionsComponent, canActivate: [LoginGuard] },
   { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'useredit', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },

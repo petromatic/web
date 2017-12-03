@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -13,7 +14,7 @@ export class AddCreditComponent implements OnInit {
   amount: number = 0;
   changed: boolean = false;
 
-  constructor(private route: ActivatedRoute, public db: AngularFireDatabase) {
+  constructor(private location: Location, private route: ActivatedRoute, public db: AngularFireDatabase) {
     this.users = db.list('/users');
 
     this.route.params.subscribe(params => {
@@ -33,12 +34,12 @@ export class AddCreditComponent implements OnInit {
 
   save()
   {
+    this.changed = false;
     if(this.userId && this.amount > 0)
     {
       let transactionsModel = this.db.list('/user_transactions/'+this.userId);
       transactionsModel.push({"localtime":+new Date(),"value":this.amount,"timestamp":{".sv": "timestamp"}}).then( (transaction) =>{
-        console.log(transaction)
-        this.changed = false;
+        this.location.back();
       });
     }
     else

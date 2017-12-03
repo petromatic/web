@@ -3,7 +3,7 @@
     <fieldset>
       <legend>Cargar credito</legend>
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="col-md-4 control-label" for="userInput">Usuario</label>
         <div class="col-md-4">
           <select [ngModel]="userId" (ngModelChange)="userId = $event; changed = true;" id="userInput" name="userInput" class="form-control input-md">
@@ -12,7 +12,7 @@
             </option>
           </select>
         </div>
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label class="col-md-4 control-label" for="amountInput">Monto</label>
@@ -26,7 +26,7 @@
         <div class="col-md-4">
           <button [disabled]="!changed" (click)="save()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': changed, 'btn-success': !changed }">
             <span class="gliphicon-save"></span>
-            {{ changed ? "Enviar" : "Enviado" }}
+            Enviar
           </button>
         </div>
       </div>
