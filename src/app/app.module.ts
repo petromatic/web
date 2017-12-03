@@ -20,6 +20,8 @@ import { UsersComponent } from './users/users.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { AddCreditComponent } from './addcredit/addcredit.component';
+import { BusyComponent } from './busy/busy.component';
+import { BusyService } from './busy.service';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [LoginGuard] },
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     UsersComponent,
     UsereditComponent,
     TransactionsComponent,
-    AddCreditComponent
+    AddCreditComponent,
+    BusyComponent
   ],
   imports: [
     FormsModule,
@@ -52,7 +55,7 @@ const appRoutes: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [AngularFireAuth, AngularFireDatabase, UserService, LoginGuard, AdminGuard],
+  providers: [AngularFireAuth, AngularFireDatabase, UserService, BusyService, LoginGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
