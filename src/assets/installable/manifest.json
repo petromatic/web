@@ -1,0 +1,14 @@
+{
+    "short_name": "Petromatic",
+    "name": "Petromatic",
+    "icons": [
+        {
+            "src": "launcher-icon.png",
+            "sizes": "259x194",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
