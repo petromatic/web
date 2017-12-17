@@ -31,6 +31,15 @@
         },
         ".indexOn": ["timestamp"]
       }
+    },
+    "orders":{
+      "$uid": {
+        "$truckId":{
+          "$driverId":{
+            ".indexOn": ["transaction"]
+          }
+        }
+      }
     }
   }
 }
