@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'app-transactions',
@@ -9,7 +10,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 })
 export class TransactionsComponent implements OnInit {
   userId : string;
-  userTransactions: FirebaseListObservable<any>;
+  userTransactions: Observable<any>;
 
   constructor(private route: ActivatedRoute, private db: AngularFireDatabase) { }
 
@@ -19,12 +20,9 @@ export class TransactionsComponent implements OnInit {
       this.userId = params['uid'];
       if(this.userId)
       {
-        this.userTransactions = this.db.list('/user_transactions/'+this.userId, {
-          query: {
-            orderByChild: 'timestamp',
-            limitToLast: 10
-          }
-        });
+        this.userTransactions = this.db.list('/user_transactions/'+this.userId, 
+          ref => ref.orderByChild('timestamp').limitToLast(10)
+        ).valueChanges();
       }
    });
   }

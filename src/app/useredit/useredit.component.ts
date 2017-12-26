@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable'
 import { UUID } from 'angular2-uuid';
+
 
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../../environments/environment';
@@ -15,7 +17,7 @@ import * as firebase from 'firebase/app';
 })
 export class UsereditComponent implements OnInit {
   id: string;
-  userModel: FirebaseObjectObservable<any>;
+  userModel: AngularFireObject<any>;
   user: any;
   changed: boolean = false;
 
@@ -24,11 +26,11 @@ export class UsereditComponent implements OnInit {
       this.id = params['id'];
       if(this.id)
       {
-        this.userModel = this.db.object('/users/'+this.id, { preserveSnapshot: true });
+        this.userModel = this.db.object('/users/'+this.id);
         console.log(this.userModel);
-        this.userModel.subscribe( user => {
-          this.user = user.val()
-        });
+        this.userModel.valueChanges().subscribe(
+          (user) => this.user = user
+        );
       }
       else
       {
@@ -50,7 +52,7 @@ export class UsereditComponent implements OnInit {
       let password = UUID.UUID();
       afAuth.auth.createUserWithEmailAndPassword(email, password).then( (afUser) =>{
         this.id = afUser.uid;
-        this.userModel = this.db.object('/users/'+this.id, { preserveSnapshot: true });
+        this.userModel = this.db.object('/users/'+this.id);
         this.userModel.update(this.user).then( (user) =>{
           this.changed = false;
         });

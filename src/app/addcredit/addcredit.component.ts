@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-addcredit',
@@ -10,12 +11,12 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 })
 export class AddCreditComponent implements OnInit {
   userId: string = null;
-  users: FirebaseListObservable<any[]>;
+  users: Observable<any[]>;
   amount: number = 0;
   changed: boolean = false;
 
   constructor(private location: Location, private route: ActivatedRoute, public db: AngularFireDatabase) {
-    this.users = db.list('/users');
+    this.users = db.list('/users').valueChanges();
 
     this.route.params.subscribe(params => {
       this.userId = params['uid'];
