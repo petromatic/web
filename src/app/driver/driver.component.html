@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="hidden-sm-up">Chofer</th>
+      <th class="hidden-xs">Nombre</th>
+      <th class="hidden-xs">Apellido</th>
+      <th class="hidden-xs">DNI</th>
+      <th>
+        <button [routerLink]="['/driver/', id, 'new']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let driver of drivers | async; index as i">
+      <th class="hidden-sm-up">{{driver.name}} {{driver.surname}}</th>
+      <td class="hidden-xs">{{driver.name}}</td>
+      <td class="hidden-xs">{{driver.surname}}</td>
+      <td class="hidden-xs">{{driver.dni}}</td>
+      <td>
+        <div class="btn-toolbar pull-right">          
+          <button [routerLink]="['/useredit', driver.key]" class="btn btn-info parents" alt="Editar" title="Editar">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="hidden-xs">Editar</span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,40 @@
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend>Nueva orden</legend>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="amountInput">Monto</label>
+        <div class="col-md-4">
+          <input [ngModel]="order?.value" (ngModelChange)="order.value = $event; changed = true;" id="amountInput" name="nameInput" type="number" placeholder="0" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="driverInput">Chofer</label>
+        <div class="col-md-4">
+          <input [ngModel]="order?.driver" (ngModelChange)="order.driver = $event; changed = true;" id="driverInput" name="drivereInput" type="string" placeholder="0" class="form-control input-md">
+        </div>
+      </div>
+        
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="trucktInput">Camion</label>
+        <div class="col-md-4">
+          <input [ngModel]="order?.truck" (ngModelChange)="order.truck = $event; changed = true;" id="truckInput" name="truckInput" type="string" placeholder="0" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="singlebutton"></label>
+        <div class="col-md-4">
+          <button (click)="save()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': true, 'btn-success': false }">
+            <span class="gliphicon-save"></span>
+            Enviar
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>

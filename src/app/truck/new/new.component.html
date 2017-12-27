@@ -1,0 +1,54 @@
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend *ngIf="!id">Nuevo camion</legend>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="plateInput">Patente</label>
+        <div class="col-md-4">
+          <input [ngModel]="truck?.plate" (ngModelChange)="truck.plate = $event;" id="plateInput" name="plateInput" type="text" placeholder="Patente" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="brandInput">Marca</label>
+        <div class="col-md-4">
+          <input [ngModel]="truck?.brand" (ngModelChange)="truck.brand = $event;" id="brandInput" name="brandInput" type="text" placeholder="Marca" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="modelInput">Modelo</label>
+        <div class="col-md-4">
+          <input [ngModel]="truck?.model" (ngModelChange)="truck.model = $event;" id="modelInput" name="modelInput" type="text" placeholder="Modelo" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="descriptionInput">Descripci&oacute;n</label>
+        <div class="col-md-4">
+          <input [ngModel]="truck?.description" (ngModelChange)="truck.description = $event;" id="descriptionInput" name="descriptionInput" type="text" placeholder="Descripci&oacute;n" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="capacityInput">Capacidad</label>
+        <div class="col-md-4">
+          <input [ngModel]="truck?.capacity" (ngModelChange)="truck.capacity = $event;" id="emailInput" name="capacityInput" type="number" placeholder="Capacidad" class="form-control input-md">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="singlebutton"></label>
+        <div class="col-md-4">
+          <button (click)="save()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': true, 'btn-success': false }">
+            <span class="gliphicon-save"></span>
+              Guardar
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>

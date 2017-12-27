@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="hidden-sm-up">Patente</th>
+      <th class="hidden-xs">Patente</th>
+      <th class="hidden-xs">Marca</th>
+      <th class="hidden-xs">Modelo</th>
+      <th class="hidden-xs">Capacidad</th>
+      <th class="hidden-xs">Descripcion</th>
+      <th>
+        <button [routerLink]="['/truck/', id, 'new']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let truck of trucks | async; index as i">
+      <td class="hidden-xs">{{truck.plate}}</td>
+      <td class="hidden-xs">{{truck.brand}}</td>
+      <td class="hidden-xs">{{truck.model}}</td>
+      <td class="hidden-xs">{{truck.capacity}}</td>
+      <td class="hidden-xs">{{truck.description}}</td>
+      <td>
+        <div class="btn-toolbar pull-right">          
+          <button [routerLink]="['/useredit', truck.key]" class="btn btn-info parents" alt="Editar" title="Editar">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="hidden-xs">Editar</span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

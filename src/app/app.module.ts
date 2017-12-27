@@ -22,6 +22,12 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { AddCreditComponent } from './addcredit/addcredit.component';
 import { BusyComponent } from './busy/busy.component';
 import { BusyService } from './busy.service';
+import { OrderComponent } from './order/order.component';
+import { NewOrderComponent } from './order/new/new.component';
+import { DriverComponent } from './driver/driver.component';
+import { NewDriverComponent } from './driver/new/new.component';
+import { TruckComponent } from './truck/truck.component';
+import { NewTruckComponent } from './truck/new/new.component';
 
 const appRoutes: Routes = [
   //{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
@@ -34,6 +40,12 @@ const appRoutes: Routes = [
   { path: 'addcredit/:uid', component: AddCreditComponent, canActivate: [AdminGuard] },
   { path: 'addcredit', component: AddCreditComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'truck/:uid', component: TruckComponent, canActivate: [LoginGuard] },
+  { path: 'driver/:uid', component: DriverComponent, canActivate: [LoginGuard] },
+  { path: 'truck/:uid/new', component: NewTruckComponent, canActivate: [LoginGuard] },
+  { path: 'driver/:uid/new', component: NewDriverComponent, canActivate: [LoginGuard] },
+  { path: 'order/:uid', component: OrderComponent, canActivate: [LoginGuard] },
+  { path: 'order/:uid/new', component: NewOrderComponent, canActivate: [LoginGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -48,7 +60,13 @@ const appRoutes: Routes = [
     UsereditComponent,
     TransactionsComponent,
     AddCreditComponent,
-    BusyComponent
+    BusyComponent,
+    OrderComponent,
+    NewOrderComponent,
+    DriverComponent,
+    NewDriverComponent,
+    TruckComponent,
+    NewTruckComponent
   ],
   imports: [
     FormsModule,
