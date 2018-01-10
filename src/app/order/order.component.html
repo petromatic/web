@@ -1,14 +1,16 @@
+<br>
+<div class="btn-toolbar pull-left">
+  <button [routerLink]="['/order/', uid, 'new']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
+  </button>
+</div>
+
 <table class="table">
   <thead>
     <tr>
       <th class="hidden-xs">Creaci&oacute;n</th>
       <th class="hidden-xs">Cantidad</th>
       <th class="hidden-xs">Realizado</th>
-      <th>
-        <button [routerLink]="['/order/', uid, 'new']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
-        </button>
-      </th>
     </tr>
   </thead>
   <tbody>
@@ -17,13 +19,6 @@
       <td class="hidden-xs">{{order.value}}</td>
       <td class="hidden-xs" >
         <span *ngIf="order.transaction">Si</span>
-      </td>
-      <td>
-        <div class="btn-toolbar pull-right">          
-          <button [routerLink]="['/useredit', order.key]" class="btn btn-info parents" alt="Editar" title="Editar">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="hidden-xs">Editar</span>
-          </button>
-        </div>
       </td>
     </tr>
   </tbody>
