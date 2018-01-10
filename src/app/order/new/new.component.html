@@ -4,26 +4,40 @@
       <legend>Nueva orden</legend>
 
       <div class="form-group">
-        <label class="col-md-4 control-label" for="amountInput">Monto</label>
-        <div class="col-md-4">
-          <input [ngModel]="order?.value" (ngModelChange)="order.value = $event; changed = true;" id="amountInput" name="nameInput" type="number" placeholder="0" class="form-control input-md">
-        </div>
-      </div>
-
-      <div class="form-group">
         <label class="col-md-4 control-label" for="driverInput">Chofer</label>
         <div class="col-md-4">
-          <input [ngModel]="order?.driver" (ngModelChange)="order.driver = $event; changed = true;" id="driverInput" name="drivereInput" type="string" placeholder="0" class="form-control input-md">
+          <select [ngModel]="order?.driver" (ngModelChange)="order.driver = $event; changed = true;" id="driverInput" name="drivereInput" type="string" class="form-control input-md">
+            <option *ngFor="let driver of drivers | async" [value]="driver.key">
+                {{ driver.name }} {{ driver.surname }} | {{ driver.dni }}
+            </option>
+          </select>
         </div>
       </div>
         
       <div class="form-group">
         <label class="col-md-4 control-label" for="trucktInput">Camion</label>
         <div class="col-md-4">
-          <input [ngModel]="order?.truck" (ngModelChange)="order.truck = $event; changed = true;" id="truckInput" name="truckInput" type="string" placeholder="0" class="form-control input-md">
+            <select [ngModel]="order?.truck" (change)="onTruckChange($event);" (ngModelChange)="order.truck = $event; changed = true;" id="truckInput" name="truckInput" type="string" class="form-control input-md">
+              <option *ngFor="let truck of trucks | async" [value]="truck.key" [attr.data-capacity]="truck.capacity">
+                  {{ truck.plate }} {{ truck.brand }} {{ truck.model }}
+              </option>
+            </select>
         </div>
       </div>
 
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="amountInput">Litros</label>
+        <div class="col-md-4">
+          <input [ngModel]="order?.value" [disabled]="full" (ngModelChange)="order.value = $event; changed = true;" id="amountInput" name="nameInput" type="number" placeholder="0" class="form-control input-md" [max]="capacity" min="1">
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" name="fullTankInput" id="fullTankInput" [ngModel]="full" (ngModelChange)="full = $event; order.value = full ? capacity : order?.value;">
+              <label class="form-check-label" for="fullTankInput">
+                Tanque lleno
+              </label>
+            </div>
+        </div>
+      </div>
+  
       <div class="form-group">
         <label class="col-md-4 control-label" for="singlebutton"></label>
         <div class="col-md-4">
