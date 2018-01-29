@@ -31,19 +31,16 @@ import { NewTruckComponent } from './truck/new/new.component';
 
 const appRoutes: Routes = [
   //{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
-  { path: '', component: UsersComponent, canActivate: [AdminGuard] },
-  { path: 'transactions/:uid', component: TransactionsComponent, canActivate: [LoginGuard] },
-  { path: 'transactions', component: TransactionsComponent, canActivate: [LoginGuard] },
+  { path: '', component: OrderComponent, canActivate: [LoginGuard] },
   { path: 'useredit/:id', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'useredit', component: UsereditComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuard] },
-  { path: 'addcredit/:uid', component: AddCreditComponent, canActivate: [AdminGuard] },
-  { path: 'addcredit', component: AddCreditComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'truck/:uid', component: TruckComponent, canActivate: [LoginGuard] },
   { path: 'driver/:uid', component: DriverComponent, canActivate: [LoginGuard] },
   { path: 'truck/:uid/new', component: NewTruckComponent, canActivate: [LoginGuard] },
   { path: 'driver/:uid/new', component: NewDriverComponent, canActivate: [LoginGuard] },
+  { path: 'order', component: OrderComponent, canActivate: [LoginGuard] },
   { path: 'order/:uid', component: OrderComponent, canActivate: [LoginGuard] },
   { path: 'order/:uid/new', component: NewOrderComponent, canActivate: [LoginGuard] },
   { path: '**', component: PageNotFoundComponent }

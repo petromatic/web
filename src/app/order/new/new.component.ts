@@ -51,8 +51,13 @@ export class NewOrderComponent implements OnInit {
   {
     if(this.userId && this.order.truck && this.order.driver)
     {
-      let model = this.db.list('/user_orders/'+this.userId+'/'+this.order.truck+'/'+this.order.driver);
-      model.push({"localtime":+new Date(),"timestamp":{".sv": "timestamp"}, ...this.order}).then( (order) =>{
+      let key = this.db.list(`/user_orders/${this.userId}`).push(undefined).key;
+      let time = {"localtime":+new Date(),"timestamp":{".sv": "timestamp"}};
+      let updates = {};
+      updates[`${this.order.truck}/${this.order.driver}/${key}`] = {...time, "value": this.order.value};
+      updates[`orders/${key}`] = {...time, ...this.order};
+      let model = this.db.object(`/user_orders/${this.userId}`);
+      model.update(updates).then( (order) =>{
         this.location.back();
       });
     }
