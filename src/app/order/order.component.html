@@ -18,7 +18,8 @@
       <td class="hidden-xs">{{order.timestamp | date:'short' }}</td>
       <td class="hidden-xs">{{order.value}}</td>
       <td class="hidden-xs" >
-        <span *ngIf="order.transaction">Si</span>
+        <span *ngIf="order.transaction">Pendiente</span>
+        <span *ngIf="!order.transaction">Realizado</span>
       </td>
     </tr>
   </tbody>
