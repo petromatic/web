@@ -6,8 +6,8 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="driverInput">Chofer</label>
         <div class="col-md-4">
-          <select [ngModel]="order?.driver" (ngModelChange)="order.driver = $event; changed = true;" id="driverInput" name="drivereInput" type="string" class="form-control input-md">
-            <option *ngFor="let driver of drivers | async" [value]="driver.key">
+          <select [ngModel]="order?.driver" (change)="onDriverChange($event);" (ngModelChange)="order.driver = $event; changed = true;" id="driverInput" name="drivereInput" type="string" class="form-control input-md">
+            <option *ngFor="let driver of drivers | async" [value]="driver.key" [attr.data-name]="driver.name" [attr.data-surname]="driver.surname" [attr.data-dni]="driver.dni">
                 {{ driver.name }} {{ driver.surname }} | {{ driver.dni }}
             </option>
           </select>
@@ -18,7 +18,7 @@
         <label class="col-md-4 control-label" for="trucktInput">Camion</label>
         <div class="col-md-4">
             <select [ngModel]="order?.truck" (change)="onTruckChange($event);" (ngModelChange)="order.truck = $event; changed = true;" id="truckInput" name="truckInput" type="string" class="form-control input-md">
-              <option *ngFor="let truck of trucks | async" [value]="truck.key" [attr.data-capacity]="truck.capacity">
+              <option *ngFor="let truck of trucks | async" [value]="truck.key" [attr.data-capacity]="truck.capacity" [attr.data-plate]="truck.plate" [attr.data-brand]="truck.brand" [attr.data-model]="truck.model">
                   {{ truck.plate }} {{ truck.brand }} {{ truck.model }}
               </option>
             </select>

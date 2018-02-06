@@ -17,7 +17,9 @@ export class NewOrderComponent implements OnInit {
   full: boolean = false;
   capacity: number = 0;
   trucks: Observable<any[]>;
-  drivers: Observable<any[]>;
+  drivers: Observable<any[]>
+  truck: any;
+  driver: any;
 
   constructor(private location: Location, private route: ActivatedRoute, public db: AngularFireDatabase) {
     this.order = {
@@ -42,9 +44,15 @@ export class NewOrderComponent implements OnInit {
   ngOnInit() {
   }
 
+  onDriverChange(event){
+    const sel = event.target;
+    this.driver = sel.options[sel.selectedIndex].dataset;
+  }
+
   onTruckChange(event){
     const sel = event.target;
     this.capacity = parseInt(sel.options[sel.selectedIndex].dataset.capacity);
+    this.truck = sel.options[sel.selectedIndex].dataset;
   }
 
   save()
@@ -55,7 +63,8 @@ export class NewOrderComponent implements OnInit {
       let time = {"localtime":+new Date(),"timestamp":{".sv": "timestamp"}};
       let updates = {};
       updates[`${this.order.truck}/${this.order.driver}/${key}`] = {...time, "value": this.order.value};
-      updates[`orders/${key}`] = {...time, ...this.order};
+      updates[`orders/${key}`] = {...time, "driver": this.driver, "truck": this.truck, "value": this.order.value};
+      console.log(updates);
       let model = this.db.object(`/user_orders/${this.userId}`);
       model.update(updates).then( (order) =>{
         this.location.back();

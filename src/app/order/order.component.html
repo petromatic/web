@@ -9,17 +9,21 @@
   <thead>
     <tr>
       <th class="hidden-xs">Creaci&oacute;n</th>
+      <th class="hidden-xs">Chofer</th>
+      <th class="hidden-xs">Vehiculo</th>
       <th class="hidden-xs">Cantidad</th>
-      <th class="hidden-xs">Realizado</th>
+      <th class="hidden-xs">Estado</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let order of orders | async; index as i">
       <td class="hidden-xs">{{order.timestamp | date:'short' }}</td>
+      <td class="hidden-xs">{{order.driver.name}} {{order.driver.surname}} {{order.driver.dni}}</td>
+      <td class="hidden-xs">{{order.truck.brand}} {{order.truck.model}} {{order.truck.plate}}</td>
       <td class="hidden-xs">{{order.value}}</td>
       <td class="hidden-xs" >
-        <span *ngIf="order.transaction">Pendiente</span>
-        <span *ngIf="!order.transaction">Realizado</span>
+        <span *ngIf="!order.transaction">Pendiente</span>
+        <span *ngIf="order.transaction">Realizado</span>
       </td>
     </tr>
   </tbody>
