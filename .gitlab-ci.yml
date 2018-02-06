@@ -3,6 +3,7 @@ image: ndazeo/angularfire2
 cache:
   paths:
     - node_modules/
+  key: "$CI_BUILD_REF_NAME-assets"
 
 deploy:
   stage: deploy
