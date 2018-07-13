@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { BusyService } from '../busy.service'
@@ -18,6 +17,7 @@ export class OrderComponent implements OnInit {
   limit: number = 10;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute, 
     private db: AngularFireDatabase, 
     private busy : BusyService,
@@ -51,6 +51,10 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  view(orderId){
+    this.router.navigate(['/order',this.uid,'view',orderId]);
   }
 
 }

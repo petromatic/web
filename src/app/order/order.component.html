@@ -1,6 +1,7 @@
 <br>
 <div class="btn-toolbar pull-left">
   <button [routerLink]="['/order/', uid, 'new']" class="btn btn-success parents pull-right" alt="Nuevo" title="Nuevo">
+    <!-- th class="hidden-xs">Creaci&oacute;n</th-->
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span  class="hidden-xs">Nuevo</span>
   </button>
 </div>
@@ -8,7 +9,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th class="hidden-xs">Creaci&oacute;n</th>
       <th class="hidden-xs">Chofer</th>
       <th class="hidden-xs">Vehiculo</th>
       <th class="hidden-xs">Cantidad</th>
@@ -24,6 +24,12 @@
       <td class="hidden-xs" >
         <span *ngIf="!order.transaction">Pendiente</span>
         <span *ngIf="order.transaction">Realizado</span>
+      </td>
+      <td class="hidden-xs">
+        <button (click)="view(order.key)" id="printbutton" name="printbutton" class="btn" [ngClass]="{'btn-primary': false, 'btn-success': true }">
+          <span class="gliphicon-view"></span>
+          Ver
+        </button>
       </td>
     </tr>
   </tbody>

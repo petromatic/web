@@ -1,0 +1,59 @@
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend>Orden</legend>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="driverInput">Chofer</label>
+        <div class="col-md-4">
+          {{ (order|async)?.driver.name }} 
+          {{ (order|async)?.driver.surname }} | 
+          {{ (order|async)?.driver.dni }}
+        </div>
+      </div>
+        
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="trucktInput">Camion</label>
+        <div class="col-md-4">
+          {{ (order|async)?.truck.plate }} 
+          {{ (order|async)?.truck.brand }} 
+          {{ (order|async)?.truck.model }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="">Litros</label>
+        <div class="col-md-4">
+          {{ (order|async)?.value }}
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="col-md-4 control-label" for=""></label>
+        <div class="col-md-4">
+          <div>
+              <qr-code [value]="qrjson" [size]="150"></qr-code>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="singlebutton"></label>
+        <div class="col-md-4">
+          <button (click)="back()" id="singlebutton" name="singlebutton" class="btn" [ngClass]="{'btn-primary': true, 'btn-success': false }">
+            <span class="gliphicon-chevron-left"></span>
+            Atras
+          </button>
+        </div>
+        <div class="col-md-4">
+            <button (click)="back()" id="printbutton" name="printbutton" class="btn" [ngClass]="{'btn-primary': false, 'btn-success': true }">
+              <span class="gliphicon-print"></span>
+              Imprimir
+            </button>
+          </div>
+        </div>
+
+    </fieldset>
+  </form>
+
+</div>

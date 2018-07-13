@@ -28,6 +28,8 @@ import { DriverComponent } from './driver/driver.component';
 import { NewDriverComponent } from './driver/new/new.component';
 import { TruckComponent } from './truck/truck.component';
 import { NewTruckComponent } from './truck/new/new.component';
+import { QRCodeModule } from 'angular2-qrcode';
+import { ViewOrderComponent } from './order/view/view.component';
 
 const appRoutes: Routes = [
   //{ path: '', component: DashboardComponent, canActivate: [LoginGuard] },
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
   { path: 'driver/:uid/new', component: NewDriverComponent, canActivate: [LoginGuard] },
   { path: 'order', component: OrderComponent, canActivate: [LoginGuard] },
   { path: 'order/:uid', component: OrderComponent, canActivate: [LoginGuard] },
+  { path: 'order/:uid/view/:oid', component: ViewOrderComponent, canActivate: [LoginGuard] },
   { path: 'order/:uid/new', component: NewOrderComponent, canActivate: [LoginGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -63,10 +66,12 @@ const appRoutes: Routes = [
     DriverComponent,
     NewDriverComponent,
     TruckComponent,
-    NewTruckComponent
+    NewTruckComponent,
+    ViewOrderComponent
   ],
   imports: [
     FormsModule,
+    QRCodeModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase)
