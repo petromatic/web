@@ -25,9 +25,13 @@
     "angular2-qrcode": "^2.0.1",
     "angular2-uuid": "^1.1.1",
     "angularfire2": "^5.0.0-rc.5-next",
+    "buffer": "^5.1.0",
     "core-js": "^2.5.3",
+    "crc": "^3.8.0",
+    "crypto-browserify": "^3.12.0",
     "firebase": "4.8.0",
     "rxjs": "^5.5.6",
+    "utf8": "^3.0.0",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {

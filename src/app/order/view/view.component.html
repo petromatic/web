@@ -32,7 +32,7 @@
         <label class="col-md-4 control-label" for=""></label>
         <div class="col-md-4">
           <div>
-              <qr-code [value]="qrjson" [size]="150"></qr-code>
+              <qr-code [value]="qrjson" [size]="300"></qr-code>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
           </button>
         </div>
         <div class="col-md-4">
-            <button (click)="back()" id="printbutton" name="printbutton" class="btn" [ngClass]="{'btn-primary': false, 'btn-success': true }">
+            <button (click)="print()" id="printbutton" name="printbutton" class="btn" [ngClass]="{'btn-primary': false, 'btn-success': true }">
               <span class="gliphicon-print"></span>
               Imprimir
             </button>
